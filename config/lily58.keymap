@@ -2,90 +2,58 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/pointing.h>
-
 / {
     keymap {
         compatible = "zmk,keymap";
-
         default_layer {
-            display-name = "DEFAULT";
+            display-name = "Base";
             bindings = <
-                &kp ESC &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-                &kp TAB &kp Q &kp W &kp E &kp R &kp T
-                &kp LSHIFT &kp A &kp S &kp D &kp F &kp G
-                &kp LCTRL &kp Z &kp X &kp C &kp V &kp B
-                &none &none &none &kp LGUI &kp LALT &lt 4 SPACE
-                &kp EQUAL &kp N0 &kp N9 &kp N8 &kp N7 &kp N6
-                &kp MINUS &kp P &kp O &kp I &kp U &kp Y
-                &kp SQT &kp SEMI &kp L &kp K &kp J &kp H
-                &kp BSLH &kp FSLH &kp DOT &kp COMMA &kp M &kp N
-                &none &none &none &lt 1 DEL &kp BSPC &lt 2 RET
+&kp ESC   &kp N1   &kp N2   &kp N3    &kp N4    &kp N5                       &kp N6    &kp N7    &kp N8     &kp N9    &kp N0     &kp EQUAL
+&kp TAB   &kp Q    &kp W    &kp E     &kp R     &kp T                        &kp Y     &kp U     &kp I      &kp O     &kp P      &kp MINUS
+&kp LSHFT &kp A    &kp S    &kp D     &kp F     &kp G                        &kp H     &kp J     &kp K      &kp L     &kp SEMI   &kp SQT
+&kp LCTRL &kp Z    &kp X    &kp C     &kp V     &kp B    &none      &none     &kp N     &kp M     &kp COMMA  &kp DOT   &kp FSLH   &kp BSLH
+                              &kp LGUI  &kp LALT  < 4 SPACE &none   &none     < 2 RET &kp BSPC  < 1 DEL
             >;
         };
-
         mouse_layer {
-            display-name = "MOUSE";
+            display-name = "Mouse";
             bindings = <
-                &trans &trans &trans &trans &trans &trans
-                &trans &msc SCRL_DOWN &mmv MOVE_UP &msc SCRL_UP &trans &trans
-                &trans &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans &trans
-                &trans &mkp LCLK &mkp MCLK &mkp RCLK &trans &trans
-                &none &none &none &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &none &none &none &trans &trans &trans
+&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &msc SCRL_DOWN &mmv MOVE_UP &msc SCRL_UP &trans              &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans         &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &mkp LCLK &mkp MCLK  &mkp RCLK  &trans   &none      &none     &trans    &trans    &trans     &trans    &trans     &trans
+                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
             >;
         };
-
         func_layer {
-            display-name = "FUNC";
+            display-name = "Func";
             bindings = <
-                &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6
-                &trans &kp K_BACK &kp K_REFRESH &kp K_FORWARD &trans &trans
-                &trans &kp C_PREV &kp C_PP &kp C_NEXT &trans &trans
-                &trans &kp C_VOL_DN &kp C_MUTE &kp C_VOL_UP &trans &trans
-                &none &none &none &trans &trans &trans
-                &kp F12 &kp F11 &kp F10 &kp F9 &kp F8 &kp F7
-                &trans &trans &trans &kp PG_UP &kp PG_DN &kp DEL
-                &trans &trans &kp RIGHT &kp UP &kp DOWN &kp LEFT
-                &trans &trans &trans &kp END &kp HOME &trans
-                &none &none &none &trans &trans &trans
+&kp F1     &kp F2    &kp F3    &kp F4     &kp F5     &kp F6                       &kp F7    &kp F8    &kp F9     &kp F10   &kp F11    &kp F12
+&trans     &trans    &kp K_BACK &kp K_REFRESH &kp K_FORWARD &trans                &trans    &trans    &kp PG_UP  &kp PG_DN &kp DEL    &trans
+&trans     &trans    &kp C_PREV &kp C_PP   &kp C_NEXT &trans                        &trans    &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &trans
+&trans     &trans    &kp C_VOL_DN &kp C_MUTE &kp C_VOL_UP &trans &none    &none     &trans    &kp HOME  &kp END    &trans    &trans     &trans
+                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
             >;
         };
-
         adjust_layer {
-            display-name = "ADJUST";
+            display-name = "Adjust";
             bindings = <
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &none &none &none &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &none &none &none &trans &trans &trans
+&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &trans    &trans     &trans     &trans   &none      &none     &trans    &trans    &trans     &trans    &trans     &trans
+                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
             >;
         };
-
         sym_layer {
-            display-name = "SYM";
+            display-name = "Sym";
             bindings = <
-                &kp GRAVE &trans &trans &trans &trans &trans
-                &trans &kp GRAVE &trans &trans &trans &trans
-                &trans &kp N1 &kp N2 &kp N3 &kp N4 &kp N5
-                &trans &trans &trans &trans &trans &trans
-                &none &none &none &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-                &kp EQUAL &trans &trans &trans &trans &trans
-                &trans &kp N0 &kp N9 &kp N8 &kp N7 &kp N6
-                &trans &trans &trans &trans &trans &trans
-                &none &none &none &trans &trans &trans
+&kp GRAVE  &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &kp GRAVE &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &kp N1    &kp N2    &kp N3     &kp N4     &kp N5                       &trans    &trans    &trans     &trans    &trans     &trans
+&trans     &trans    &trans    &trans     &trans     &trans   &none      &none     &trans    &trans    &trans     &trans    &trans     &trans
+                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
             >;
         };
-
     };
 };
