@@ -21,7 +21,7 @@
         new_line: new_line {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp DOUBLE_QUOTES &kp NON_US_BACKSLASH &kp N &kp DOUBLE_QUOTES>;
+            bindings = <&kp DOUBLE_QUOTES &kp BACKSLASH &kp N &kp DOUBLE_QUOTES>;
             label = "NEW_LINE";
         };
 
