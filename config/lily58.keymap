@@ -1,59 +1,89 @@
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/pointing.h>
+
 / {
+    macros {
+        fcitx: fcitx {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LCTRL>,
+                <&macro_tap>,
+                <&kp SPACE>,
+                <&macro_release>,
+                <&kp LCTRL>;
+
+            label = "FCITX";
+        };
+
+        new_line: new_line {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp DOUBLE_QUOTES &kp NON_US_BACKSLASH &kp N &kp DOUBLE_QUOTES>;
+            label = "NEW_LINE";
+        };
+
+        arrow: arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS &kp GREATER_THAN>;
+            label = "ARROW";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        fcitx {
+            bindings = <&fcitx>;
+            key-positions = <32 33>;
+        };
+
+        new_line {
+            bindings = <&new_line>;
+            key-positions = <33 34>;
+        };
+
+        arrow {
+            bindings = <&arrow>;
+            key-positions = <48 49>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
-        default_layer {
-            display-name = "Base";
+
+        layer_0 {
             bindings = <
-&kp ESC   &kp N1   &kp N2   &kp N3    &kp N4    &kp N5                       &kp N6    &kp N7    &kp N8     &kp N9    &kp N0     &kp EQUAL
-&kp TAB   &kp Q    &kp W    &kp E     &kp R     &kp T                        &kp Y     &kp U     &kp I      &kp O     &kp P      &kp MINUS
-&kp LSHFT &kp A    &kp S    &kp D     &kp F     &kp G                        &kp H     &kp J     &kp K      &kp L     &kp SEMI   &kp SQT
-&kp LCTRL &kp Z    &kp X    &kp C     &kp V     &kp B    &none      &none     &kp N     &kp M     &kp COMMA  &kp DOT   &kp FSLH   &kp BSLH
-                              &kp LGUI  &kp LALT  < 4 SPACE &none   &none     < 2 RET &kp BSPC  < 1 DEL
+&kp ESC    &kp N1  &kp N2  &kp N3    &kp N4    &kp N5                         &kp N6       &kp N7    &kp N8      &kp N9   &kp N0    &kp EQUAL
+&kp TAB    &kp Q   &kp W   &kp E     &kp R     &kp T                          &kp Y        &kp U     &kp I       &kp O    &kp P     &kp MINUS
+&kp LSHFT  &kp A   &kp S   &kp D     &kp F     &kp G                          &kp H        &kp J     &kp K       &kp L    &kp SEMI  &kp SQT
+&kp LCTRL  &kp Z   &kp X   &kp C     &kp V     &kp B        &trans    &trans  &kp N        &kp M     &kp COMMA   &kp DOT  &kp FSLH  &kp BSLH
+                           &kp LGUI  &kp LALT  &lt 1 SPACE  &trans    &trans  &lt 2 ENTER  &kp BSPC  &kp DELETE
             >;
         };
-        mouse_layer {
-            display-name = "Mouse";
+
+        layer_1 {
             bindings = <
-&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &msc SCRL_DOWN &mmv MOVE_UP &msc SCRL_UP &trans              &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans         &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &mkp LCLK &mkp MCLK  &mkp RCLK  &trans   &none      &none     &trans    &trans    &trans     &trans    &trans     &trans
-                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
+&kp GRAVE  &trans     &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &trans
+&trans     &kp GRAVE  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &kp EQUAL
+&trans     &kp N1     &kp N2  &kp N3  &kp N4  &kp N5                    &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans
+&trans     &trans     &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                              &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
         };
-        func_layer {
-            display-name = "Func";
+
+        layer_2 {
             bindings = <
-&kp F1     &kp F2    &kp F3    &kp F4     &kp F5     &kp F6                       &kp F7    &kp F8    &kp F9     &kp F10   &kp F11    &kp F12
-&trans     &trans    &kp K_BACK &kp K_REFRESH &kp K_FORWARD &trans                &trans    &trans    &kp PG_UP  &kp PG_DN &kp DEL    &trans
-&trans     &trans    &kp C_PREV &kp C_PP   &kp C_NEXT &trans                        &trans    &kp LEFT  &kp DOWN   &kp UP    &kp RIGHT  &trans
-&trans     &trans    &kp C_VOL_DN &kp C_MUTE &kp C_VOL_UP &trans &none    &none     &trans    &kp HOME  &kp END    &trans    &trans     &trans
-                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
-            >;
-        };
-        adjust_layer {
-            display-name = "Adjust";
-            bindings = <
-&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &trans    &trans     &trans     &trans   &none      &none     &trans    &trans    &trans     &trans    &trans     &trans
-                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
-            >;
-        };
-        sym_layer {
-            display-name = "Sym";
-            bindings = <
-&kp GRAVE  &trans    &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &kp GRAVE &trans    &trans     &trans     &trans                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &kp N1    &kp N2    &kp N3     &kp N4     &kp N5                       &trans    &trans    &trans     &trans    &trans     &trans
-&trans     &trans    &trans    &trans     &trans     &trans   &none      &none     &trans    &trans    &trans     &trans    &trans     &trans
-                              &trans     &trans     &trans      &none   &none     &trans    &trans    &trans
+&kp F1  &kp F2          &kp F3            &kp F4            &kp F5  &kp F6                    &kp F7    &kp F8     &kp F9         &kp F10    &kp F11  &kp F12
+&trans  &kp C_AC_BACK   &kp C_AC_REFRESH  &kp C_AC_FORWARD  &trans  &trans                    &kp DEL   &kp PG_UP  &kp PAGE_DOWN  &trans     &trans   &trans
+&trans  &kp C_PREVIOUS  &kp C_PLAY        &kp C_NEXT        &trans  &trans                    &kp LEFT  &kp DOWN   &kp UP_ARROW   &kp RIGHT  &trans   &trans
+&trans  &kp C_VOL_DN    &kp C_MUTE        &kp C_VOL_UP      &trans  &trans  &trans    &trans  &trans    &kp HOME   &kp END        &trans     &trans   &trans
+                                          &trans            &trans  &trans  &trans    &trans  &trans    &trans     &trans
             >;
         };
     };
 };
+
